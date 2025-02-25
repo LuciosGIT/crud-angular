@@ -17,6 +17,6 @@ export const courseResolver: ResolveFn<Observable<Course>> = (route, state,  ser
 
   }
 
-  return of({_id: '', name: '', category: ''});
+  return of({_id: '', name: '', category: '', lessons: []});
 
 };
