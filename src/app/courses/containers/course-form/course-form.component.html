@@ -5,20 +5,48 @@
   <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
   <form [formGroup]="form" class="min-width">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Nome" formControlName=name #name>
+      <input matInput placeholder="Nome" formControlName="name" #name>
       <mat-hint align="end"> {{ name.value?.length || 0 }}/100</mat-hint>
       <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage('name') }}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Categoria</mat-label>
-      <mat-select formControlName=category>
+      <mat-select formControlName="category">
         <mat-option value="null"></mat-option>
         <mat-option value="Front-end">Front-end</mat-option>
         <mat-option value="Back-end">Back-end</mat-option>
       </mat-select>
       <mat-error *ngIf="form.get('category')?.invalid">{{ getErrorMessage('category') }}</mat-error>
     </mat-form-field>
+
+    <mat-toolbar>
+      <span>Aulas</span>
+      <button mat-icon-button color="accent">
+        <mat-icon aria-label="Adicionar uma nova aula">add</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <table style="width: 100%" formArrayName="lessons" *ngFor="let lesson of getLessonsFormArray(); let i = index">
+      <tbody>
+        <tr [formGroupName]="i">
+          <td style="width: 65%;">
+            <mat-form-field class="full-width">
+              <mat-label>Nome da aula</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </td>
+          <td style="width: 30%">
+            <mat-form-field class="full-width">
+              <span matTextPrefix>https://youtu.be/</span>
+              <mat-label>URL</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </form>
 
   </mat-card-content>
